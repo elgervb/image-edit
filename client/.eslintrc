@@ -1,0 +1,36 @@
+{
+    "extends": ["airbnb-base", "standard-react"],
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "browser": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "indent": ["error", 4],
+        "class-methods-use-this": 0,
+        "react/jsx-indent": ["error", 4],
+		"linebreak-style": 0,
+        "max-len": ["error", 150],
+        "no-debugger": 1,
+        "no-param-reassign": ["error", { "props": false }],
+        "no-plusplus": 0,
+        "no-restricted-syntax": [
+            2,
+            "ForInStatement",
+            "LabeledStatement",
+            "WithStatement"
+        ],
+        "no-trailing-spaces": 0,
+        "no-underscore-dangle": 0,
+        "one-var": [2, { "var": "always", "let": "always", "const": "never" }],
+        "one-var-declaration-per-line": [2, "initializations"]
+    }
+}
