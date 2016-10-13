@@ -10,7 +10,7 @@
     "test": "./vendor/phpunit/phpunit/phpunit -c ./phpunit.xml",
     "test:coverage": "$npm_package_scripts_test --coverage-text",
     "watch": "npm test && gulp test:watch",
-    "start": "php -S localhost:4000 -t src/ -c php.ini"
+    "start": "php -S localhost:4001 -t src/ -c php.ini src/router.php"
   },
   "repository": {
     "type": "git",
