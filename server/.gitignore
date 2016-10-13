@@ -1,4 +1,5 @@
 node_modules/
+src/uploads/
 tests/cache/
 tmp/
 vendor/
