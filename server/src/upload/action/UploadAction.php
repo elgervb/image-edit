@@ -4,6 +4,7 @@ namespace upload\action;
 use upload\UploadManager;
 use upload\UploadOptions;
 use handler\http\HttpStatus;
+use utils\Random;
 
 class UploadAction {
 	
@@ -34,10 +35,12 @@ class UploadAction {
 			
 			return new HttpStatus(HttpStatus::STATUS_200_OK, 
 				[	
+				    'guid' => Random::guid(),
 					'filename' => $file->getFilename(),
-					'size' => $file->getSize(),
 					'mime' => $file->getMimeType(),
-					'mtime' => $file->getMTime()
+					'mtime' => $file->getMTime(),
+				    'url' => '/uploads/' . $file->getFilename(),
+					'size' => $file->getSize(),
 				]);
 			
 		} catch (\upload\UploadException $ex) {
