@@ -20,7 +20,7 @@ export default class PromiseRequest {
                 if (xhr.status === 200) {
                     resolve(xhr);
                 } else {
-                    reject(Error(`XMLHttpRequest failed; error code: ${xhr.statusText}`));
+                    reject(new Error(xhr, `XMLHttpRequest failed; error code: ${xhr.statusText}`));
                 }
             };
 

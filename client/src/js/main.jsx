@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-import UploadForm from './components/upload/form.jsx';
+import App from './components/App.jsx';
 
 ReactDOM.render(
-    <div>
-        <UploadForm />
-    </div>,
+    <App />,
     document.getElementById('content')
 );
