@@ -10,10 +10,18 @@ export default class ImagePanel extends React.Component {
         };
     }
 
+    get host() {
+        if (this.state.image) {
+            return `http://localhost:4001/image${this.state.image}`;
+        }
+
+        return this.state.image;
+    }
+
     render() {
         return (
             <div className="image-panel">
-                <img src={`http://localhost:4001${this.state.image}`} />
+                <img src={this.host} />
             </div>
         );
     }
