@@ -6,6 +6,7 @@ use handler\IHander;
 use handler\json\JsonHandler;
 use http\HttpContext;
 use imagemanipulation\ImageBuilder;
+use upload\handler\ImageHandler;
 
 include __DIR__ . '/../vendor/autoload.php';
 
@@ -21,6 +22,7 @@ $router = new Router();
 $handlers = Handlers::get();
 $handlers->add(new HttpStatusHandler());
 $handlers->add(new JsonHandler());
+$handlers->add(new ImageHandler());
 
 $router->route('^/upload', function () {
 	$action = new \upload\action\UploadAction();
@@ -28,7 +30,7 @@ $router->route('^/upload', function () {
 }, 'POST');
 
 $router->route('^/image/(.*)', function ($image) {
-    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . $image)->render(30);
+    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . $image)->thumbCentered(500, 500);
 }, 'GET');
 
 $router->route('^/test', function () {
