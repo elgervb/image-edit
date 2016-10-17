@@ -17,10 +17,14 @@ export default class PromiseRequest {
             xhr.open(method, url);
             
             xhr.onload = () => {
+                let json;
+                if (xhr.response) {
+                    json = JSON.parse(xhr.response);
+                }
                 if (xhr.status === 200) {
-                    resolve(xhr);
+                    resolve(json, xhr);
                 } else {
-                    reject(new Error(xhr, `XMLHttpRequest failed; error code: ${xhr.statusText}`));
+                    reject(new Error(xhr.response));
                 }
             };
 

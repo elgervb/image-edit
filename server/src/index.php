@@ -30,7 +30,7 @@ $router->route('^/upload', function () {
 }, 'POST');
 
 $router->route('^/image/(.*)', function ($image) {
-    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . $image)->thumbCentered(500, 500);
+    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . $image);
 }, 'GET');
 
 $router->route('^/test', function () {
