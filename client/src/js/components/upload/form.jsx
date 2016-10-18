@@ -15,6 +15,15 @@ export default class UploadForm extends React.Component {
 
         this.handleUpload = this.handleUpload.bind(this);
         this.handleFilePick = this.handleFilePick.bind(this);
+        this.handleClear = this.handleClear.bind(this);
+    }
+
+    handleClear() {
+        this.setState({
+            uploaded: false,
+            images: [],
+            progress: 0,
+        });
     }
 
     handleUpload(e) {
@@ -31,7 +40,14 @@ export default class UploadForm extends React.Component {
         request.post('http://localhost:4001/upload', formdata)
         .then(success.bind(this), (err) => {
             // set the error on the form
-            this.setState({ error: JSON.parse(err.message).error });
+            let error;
+            if (err.message) {
+                error = JSON.parse(err.message).error;
+            } else {
+                error = 'Unable to upload at this time.';
+            }
+
+            this.setState({ error });
         });
     }
 
@@ -42,11 +58,11 @@ export default class UploadForm extends React.Component {
 
             for (i = 0; i < files.length; i++) {
                 file = files[i];
-
-                if (file.type.match('image.*')) {
+                if (!file.type.match('image.*')) {
+                    this.setState({ error: 'Only images are allowed to upload' });
+                } else {
                     const reader = new FileReader();
                     /* eslint-disable arrow-body-style */
-                    //
                     reader.onload = ((f) => {
                         return (e) => {
                             this.setState({
@@ -80,13 +96,19 @@ export default class UploadForm extends React.Component {
         return (
             <div className={this.state.uploaded ? 'overlay overlay--slideout' : 'overlay overlay--slidein'}>
                 <form className="uploadform" method="post" encType="multipart/form-data">
-                    <h1 className="uploadform__header">Upload your image</h1>
-                    <div className="error">{this.state.error}</div>
                     <input type="file" name="upload" id="upload" className="uploadform__picker" required onChange={this.handleFilePick} />
-                    <label htmlFor="upload" className="uploadform__button">Pick an image</label>
+
+                    {this.state.images.length === 0 &&
+                        <div className="pick-a-file">
+                            <h1 className="uploadform__header">Upload your image</h1>
+                            <div className="error">{this.state.error}</div>
+                            <label htmlFor="upload" className="uploadform__button">Pick an image</label>
+                        </div>
+                    }
 
                     {this.state.images.length > 0 &&
                         <div className="button-group">
+                            <button className="uploadform__button uploadform__button--remove" onClick={this.handleClear}>&times;</button>
                             <button className="uploadform__button" onClick={this.handleUpload}>Upload</button>
                         </div>
                     }
