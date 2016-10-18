@@ -37,6 +37,16 @@ export default class UploadForm extends React.Component {
                 uploaded: true,
             });
         };
+
+        request.onProgress((pe) => {
+            if (pe.lengthComputable) {
+                const percentLoaded = Math.round((pe.loaded / pe.total) * 100);
+                if (percentLoaded < 100) {
+                    this.setState({ progress: percentLoaded });
+                }
+            }
+        });
+
         request.post('http://localhost:4001/upload', formdata)
         .then(success.bind(this), (err) => {
             // set the error on the form

@@ -13,9 +13,9 @@ export default class PromiseRequest {
     request(method, url, data) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            
+
             xhr.open(method, url);
-            
+
             xhr.onload = () => {
                 let json;
                 if (xhr.response) {
@@ -28,6 +28,10 @@ export default class PromiseRequest {
                 }
             };
 
+            if (this.progressHandler) {
+                xhr.upload.onprogress = this.progressHandler;
+            }
+
             xhr.onerror = reject;
 
             if (data) {
@@ -36,5 +40,9 @@ export default class PromiseRequest {
                 xhr.send();
             }
         });
+    }
+
+    onProgress(callback) {
+        this.progressHandler = callback;
     }
 }
