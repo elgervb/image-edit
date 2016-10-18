@@ -1,6 +1,7 @@
 import React from 'react';
 import UploadForm from './upload/form.jsx';
 import ImagePanel from './imagepanel/imagepanel.jsx';
+import {} from '../../scss/main.scss';
 
 export default class App extends React.Component {
 
