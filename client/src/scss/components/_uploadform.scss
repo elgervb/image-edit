@@ -16,6 +16,11 @@
 
     &__button {
         @include btn--ghost($white-regular, $overlay-color);
+
+        &--remove {
+            border-radius: 50%;
+            min-width: 0;
+        }
     }
 }
 
