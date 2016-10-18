@@ -18,7 +18,13 @@ export default () => ({
         path.join(source, 'scss', 'main.scss'),
         path.join(source, 'js', 'main.jsx'),
         path.join(source, 'index.html'),
-    ], 
+    ],
+
+    resolve: {
+        root: [
+            source,
+        ],
+    },
 
     module: {
         preLoaders: [
