@@ -38,7 +38,6 @@
     "no-eol-whitespace": true,
     "no-extra-semicolons": true,
     "no-duplicate-selectors": true,
-    "no-unknown-animations": true,
     "number-leading-zero": "never",
     "number-no-trailing-zeros": true,
     "property-case": "lower",
