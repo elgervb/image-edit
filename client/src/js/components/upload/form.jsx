@@ -11,19 +11,17 @@ export default class UploadForm extends React.Component {
         };
 
         this.handleUpload = this.handleUpload.bind(this);
+        this.handleFilePick = this.handleFilePick.bind(this);
     }
 
-    handleUpload(evt) {
-        debugger;
+    handleUpload(e) {
+        e.preventDefault();
         const formdata = new FormData(document.querySelector('.uploadform'));
         const request = new Request();
         const success = (data) => {
             this.props.onUpload(data);
             this.setState({ error: '' });
         };
-
-        this.showPreview(evt);
-
         request.post('http://localhost:4001/upload', formdata)
         .then(success.bind(this), (err) => {
             // set the error on the form
@@ -31,7 +29,7 @@ export default class UploadForm extends React.Component {
         });
     }
 
-    showPreview(evt) {
+    handleFilePick(evt) {
         if (window.File && window.FileReader && window.FileList && window.Blob) {
             const files = evt.target.files;
             let file, i;
@@ -67,13 +65,21 @@ export default class UploadForm extends React.Component {
                 <form className="uploadform" method="post" encType="multipart/form-data">
                     <h1 className="uploadform__header">Upload your image</h1>
                     <div className="error">{this.state.error}</div>
-                    <input type="file" name="upload" id="upload" required onChange={this.handleUpload} />
-                    <label htmlFor="upload" className="uploadform__button">Upload</label>
+                    <input type="file" name="upload" id="upload" className="uploadform__picker" required onChange={this.handleFilePick} />
+                    <label htmlFor="upload" className="uploadform__button">Pick an image</label>
 
-                    <div className="preview">
-                        <p>{(this.state.image) ? this.state.image.name : ''}</p>
-                        <img className="preview__thumb" src={(this.state.image) ? this.state.image.src : ''} />
-                    </div>
+                    {this.state.image &&
+                        <div className="button-group">
+                            <button className="uploadform__button" onClick={this.handleUpload}>Upload</button>
+                        </div>
+                    }
+
+                    {this.state.image &&
+                        <div className="preview">
+                            <p>{this.state.image.name}</p>
+                            <img className="preview__thumb" src={this.state.image.src} />
+                        </div>
+                    }
                 </form>
             </div>
         );

@@ -8,8 +8,12 @@
         color: $white-regular;
     }
 
+    &__picker {
+        display: none;
+    }
+
     &__button {
-        @include btn--ghost($white-regular, $grey-light);
+        @include btn--ghost($white-regular, $overlay-color);
     }
 }
 
