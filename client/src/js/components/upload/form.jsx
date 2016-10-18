@@ -10,6 +10,7 @@ export default class UploadForm extends React.Component {
             error: '',
             uploaded: false,
             images: [],
+            progress: 0,
         };
 
         this.handleUpload = this.handleUpload.bind(this);
@@ -60,6 +61,15 @@ export default class UploadForm extends React.Component {
                     })(file);
                     /* eslint-enable arrow-body-style */
 
+                    reader.onprogress = (e) => {
+                        if (e.lengthComputable) {
+                            const percentLoaded = Math.round((e.loaded / e.total) * 100);
+                            if (percentLoaded < 100) {
+                                this.setState({ progress: percentLoaded });
+                            }
+                        }
+                    };
+
                     reader.readAsDataURL(file);
                 }
             }
@@ -81,9 +91,18 @@ export default class UploadForm extends React.Component {
                         </div>
                     }
 
+                    {this.state.progress > 0 && /* eslint-disable prefer-template */
+                        <div className="progress">
+                            <div className="progress__fill" style={{ width: this.state.progress + '%' }} />
+                        </div>
+                        /* eslint-enable prefer-template */
+                    }
+
                     {this.state.images.length > 0 && this.state.images.map(image =>
-                        <div className="preview">
+                        <div key={image.name} className="preview">
                             <p>{image.name}</p>
+
+
                             <img className="preview__thumb" src={image.src} />
                         </div>
                     )}
