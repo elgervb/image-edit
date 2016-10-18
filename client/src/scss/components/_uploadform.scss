@@ -12,3 +12,10 @@
         @include btn--ghost($white-regular, $grey-light);
     }
 }
+
+.preview {
+    &__thumb {
+        height: 250px;
+        width: 250px;
+    }
+}
