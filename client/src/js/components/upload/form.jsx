@@ -9,6 +9,7 @@ export default class UploadForm extends React.Component {
         this.state = {
             error: '',
             uploaded: false,
+            images: [],
         };
 
         this.handleUpload = this.handleUpload.bind(this);
@@ -48,12 +49,12 @@ export default class UploadForm extends React.Component {
                     reader.onload = ((f) => {
                         return (e) => {
                             this.setState({
-                                image: {
+                                images: this.state.images.concat({
                                     src: e.target.result,
                                     name: f.name,
                                     size: f.size,
                                     type: f.type,
-                                },
+                                }),
                             });
                         };
                     })(file);
@@ -74,18 +75,18 @@ export default class UploadForm extends React.Component {
                     <input type="file" name="upload" id="upload" className="uploadform__picker" required onChange={this.handleFilePick} />
                     <label htmlFor="upload" className="uploadform__button">Pick an image</label>
 
-                    {this.state.image &&
+                    {this.state.images.length > 0 &&
                         <div className="button-group">
                             <button className="uploadform__button" onClick={this.handleUpload}>Upload</button>
                         </div>
                     }
 
-                    {this.state.image &&
+                    {this.state.images.length > 0 && this.state.images.map(image =>
                         <div className="preview">
-                            <p>{this.state.image.name}</p>
-                            <img className="preview__thumb" src={this.state.image.src} />
+                            <p>{image.name}</p>
+                            <img className="preview__thumb" src={image.src} />
                         </div>
-                    }
+                    )}
                 </form>
             </div>
         );
