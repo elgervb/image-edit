@@ -3,6 +3,7 @@ $overlay-color: rgba(#f00, .7) !default;
 .overlay {
     animation-delay: 0;
     animation-duration: .2s;
+    animation-fill-mode: forwards;
     animation-timing-function: ease-out;
     background: $overlay-color;
     display: block;
@@ -47,6 +48,9 @@ $overlay-color: rgba(#f00, .7) !default;
         &--left{
             animation-name: slideInLeft;
         }
+    }
+    &--slideout{
+        animation-name: slideOutDown;
     }
     &--fadein{
         animation-name: fadeIn;

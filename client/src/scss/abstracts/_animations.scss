@@ -1,16 +1,18 @@
 @keyframes slideOutLeft {
     to {
-        transform: translateX(-100%); opacity: 0;
+        transform: translateX(-100%);
+        opacity: 0;
     }
 }
 @keyframes slideOutRight {
     to {
-        transform: translateX(100%); opacity: 0;
+        transform: translateX(100%);
+        opacity: 0;
     }
 }
 @keyframes slideOutDown {
     to {
-        transform: translateY(-100%);
+        transform: translateY(100%);
     }
 }
 @keyframes fadeOut {

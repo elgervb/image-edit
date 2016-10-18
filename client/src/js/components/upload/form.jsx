@@ -8,6 +8,7 @@ export default class UploadForm extends React.Component {
 
         this.state = {
             error: '',
+            uploaded: false,
         };
 
         this.handleUpload = this.handleUpload.bind(this);
@@ -20,7 +21,10 @@ export default class UploadForm extends React.Component {
         const request = new Request();
         const success = (data) => {
             this.props.onUpload(data);
-            this.setState({ error: '' });
+            this.setState({
+                error: '',
+                uploaded: true,
+            });
         };
         request.post('http://localhost:4001/upload', formdata)
         .then(success.bind(this), (err) => {
@@ -47,6 +51,8 @@ export default class UploadForm extends React.Component {
                                 image: {
                                     src: e.target.result,
                                     name: f.name,
+                                    size: f.size,
+                                    type: f.type,
                                 },
                             });
                         };
@@ -61,7 +67,7 @@ export default class UploadForm extends React.Component {
 
     render() {
         return (
-            <div className="overlay overlay--slidein">
+            <div className={this.state.uploaded ? 'overlay overlay--slideout' : 'overlay overlay--slidein'}>
                 <form className="uploadform" method="post" encType="multipart/form-data">
                     <h1 className="uploadform__header">Upload your image</h1>
                     <div className="error">{this.state.error}</div>
