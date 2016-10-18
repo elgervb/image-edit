@@ -1,0 +1,34 @@
+// Clearfix for when using floats. Giving the clearfix class to the parent container handles the clearing of floats in the right way
+@mixin clearfix{
+    &:after{
+        content: '.';
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+}
+
+/**
+ * Truncate the current element with a ellipsis when it does not fit
+ */
+@mixin wrap-ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * Animate the current element
+ */
+@mixin animation($name, $duration: $animation-duration, $easing: $animation-easing, $delay: 0s){
+    animation: $name $duration $easing $delay;
+}
+
+/**
+ * Add a transition to a single property of the current element
+ */
+@mixin transition($target, $duration: $animation-duration, $easing: $animation-easing, $delay: 0s){
+    transition: $target $duration $easing $delay;
+}

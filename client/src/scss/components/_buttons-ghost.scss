@@ -1,0 +1,81 @@
+
+.btn--ghost, a.btn--ghost {
+    background-color: transparent;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+    color: #999;
+    padding: 1rem 1.4167rem;
+
+    &:hover, &:focus {
+        background-color: #999;
+        border: 1px solid currentColor;
+        color: #fff;
+    }
+
+    &--red {
+        color: #e74c3c;
+
+        &:hover, &:focus {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+    }
+    &--blue {
+        color: #3498db;
+        &:hover, &:focus {
+            background-color: #3498db;
+            color: #fff;
+        }
+    }
+    &--green {
+        color: #2ecc71;
+        &:hover, &:focus {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+    }
+    &--turquoise {
+        color: #1abc9c;
+        &:hover, &:focus {
+            background-color: #1abc9c;
+            color: #fff;
+        }
+    }
+    &--orange {
+        color: #e67e22;
+        &:hover, &:focus {
+            background-color: #e67e22;
+            color: #fff;
+        }
+    }
+    &--yellow {
+        color: #e8c53a;
+        &:hover, &:focus {
+            background-color: #e8c53a;
+            color: #fff;
+        }
+    }
+    &--purple {
+        color: #9b59b6;
+        &:hover, &:focus {
+            background-color: #9b59b6;
+            color: #fff;
+        }
+    }
+
+    &--tiny, &--small {
+        padding: .5rem .8rem;
+    }
+}
+
+@mixin btn--ghost($color, $background-color) {
+    @extend .btn;
+    @extend .btn--ghost;
+
+    color: $color;
+
+    &:hover, &:focus {
+        background-color: $color;
+        color: $background-color;
+    }
+}

@@ -1,0 +1,54 @@
+$overlay-color: rgba(#f00, .7) !default;
+
+.overlay {
+    animation-delay: 0;
+    animation-duration: .2s;
+    animation-timing-function: ease-out;
+    background: $overlay-color;
+    display: block;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999999;
+
+    .overlay-close{
+        border: 2px solid $white-dark;
+        border-radius: 50%;
+        color: $white-dark;
+        display: block;
+        font-size: 2em;
+        font-weight: 500;
+        height: 3rem;
+        line-height: 3rem;
+        margin: 0 auto;
+        position: absolute;
+        right: .5em;
+        text-align: center;
+        top: 5px;
+        width: 3rem;
+
+        &:hover{
+            transform: rotate(360deg);
+        }
+    }
+
+    /*
+    * Animations
+    */
+    &--slidein{
+        animation-name: slideInUp;
+
+        &--right{
+            animation-name: slideInRight;
+        }
+
+        &--left{
+            animation-name: slideInLeft;
+        }
+    }
+    &--fadein{
+        animation-name: fadeIn;
+    }
+}

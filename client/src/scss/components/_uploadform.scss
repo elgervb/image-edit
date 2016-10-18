@@ -1,0 +1,14 @@
+.uploadform {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &__header {
+        color: $white-regular;
+    }
+
+    &__button {
+        @include btn--ghost($white-regular, $grey-light);
+    }
+}
