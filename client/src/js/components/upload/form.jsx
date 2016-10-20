@@ -100,13 +100,15 @@ export default class UploadForm extends React.Component {
                     /* eslint-disable arrow-body-style */
                     reader.onload = ((f) => {
                         return (e) => {
+                            const readFile = {
+                                src: e.target.result,
+                                name: f.name,
+                                size: f.size,
+                                type: f.type,
+                            };
+                            this.validateFile(readFile);
                             this.setState({
-                                images: this.state.images.concat({
-                                    src: e.target.result,
-                                    name: f.name,
-                                    size: f.size,
-                                    type: f.type,
-                                }),
+                                images: this.state.images.concat(readFile),
                             });
                         };
                     })(file);
@@ -124,6 +126,18 @@ export default class UploadForm extends React.Component {
                     reader.readAsDataURL(file);
                 }
             }
+        }
+    }
+
+    validateFile(file) {
+        if (file.size >= 1024 * 1024) {
+            file.isValid = false;
+            file.errorMsg = 'File is too large';
+        } else if (!file.type.match(/image\/.*/i)) {
+            file.isValid = false;
+            file.errorMsg = `Filetype is not allowed ${file.type}`;
+        } else {
+            file.isValid = true;
         }
     }
 
