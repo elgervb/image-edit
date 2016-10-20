@@ -1,4 +1,7 @@
 @import 'buttons';
 @import 'buttons-ghost';
 @import 'overlay';
-@import 'uploadform';
+
+@import 'uploadform/form';
+@import 'uploadform/preview';
+@import 'uploadform/progressbar';

@@ -1,0 +1,10 @@
+.progress {
+    height: .4rem;
+    width: 100%;
+
+    &__fill {
+        background-color: $green-regular;
+        height: 100%;
+        width: 50%;
+    }
+}
