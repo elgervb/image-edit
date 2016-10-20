@@ -1,10 +1,13 @@
 import React from 'react';
 import Request from './PromiseRequest';
+import FilePicker from './filepicker.jsx';
 
 export default class UploadForm extends React.Component {
 
     constructor() {
         super();
+
+        this.UPLOAD_ID = 'uploadinput';
 
         this.state = {
             error: '',
@@ -106,15 +109,9 @@ export default class UploadForm extends React.Component {
         return (
             <div className={this.state.uploaded ? 'overlay overlay--slideout' : 'overlay overlay--slidein'}>
                 <form className="uploadform" method="post" encType="multipart/form-data">
-                    <input type="file" name="upload" id="upload" className="uploadform__picker" required onChange={this.handleFilePick} />
+                    <input type="file" name="upload" id={this.UPLOAD_ID} className="uploadform__picker" required onChange={this.handleFilePick} />
 
-                    {this.state.images.length === 0 &&
-                        <div className="pick-a-file">
-                            <h1 className="uploadform__header">Upload your image</h1>
-                            <div className="error">{this.state.error}</div>
-                            <label htmlFor="upload" className="uploadform__button">Pick an image</label>
-                        </div>
-                    }
+                    <FilePicker linkTo={this.UPLOAD_ID} />
 
                     {this.state.images.length > 0 &&
                         <div className="button-group">
@@ -133,7 +130,6 @@ export default class UploadForm extends React.Component {
                     {this.state.images.length > 0 && this.state.images.map(image =>
                         <div key={image.name} className="preview">
                             <p>{image.name}</p>
-
 
                             <img className="preview__thumb" src={image.src} />
                         </div>
