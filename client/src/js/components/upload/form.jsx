@@ -131,7 +131,8 @@ export default class UploadForm extends React.Component {
         return (
             <div className={this.state.uploaded ? 'overlay overlay--slideout' : 'overlay overlay--slidein'}>
                 <form className="uploadform" method="post" encType="multipart/form-data">
-                    <input type="file" name="upload" id={this.UPLOAD_ID} className="uploadform__picker" required onChange={this.handleFilePick} />
+                    <input type="file" accept="image/*" name="upload" id={this.UPLOAD_ID}
+                      className="uploadform__picker" required onChange={this.handleFilePick} />
 
                     <h1 className="uploadform__header">{this.state.images.length === 0 ? 'Pick a new image' : 'Upload your image'}</h1>
 
