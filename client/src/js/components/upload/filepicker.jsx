@@ -13,7 +13,6 @@ export default class FilePicker extends React.Component {
     render() {
         return (
             <div className="pick-a-file">
-                <h1 className="uploadform__header">Upload your image</h1>
                 { this.state.error &&
                     <div className="error">{this.state.error}</div>
                 }

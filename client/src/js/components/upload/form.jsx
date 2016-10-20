@@ -113,7 +113,11 @@ export default class UploadForm extends React.Component {
                 <form className="uploadform" method="post" encType="multipart/form-data">
                     <input type="file" name="upload" id={this.UPLOAD_ID} className="uploadform__picker" required onChange={this.handleFilePick} />
 
-                    <FilePicker linkTo={this.UPLOAD_ID} />
+                    <h1 className="uploadform__header">{this.state.images.length === 0 ? 'Pick a new image' : 'Upload your image'}</h1>
+
+                    {!this.state.images.length > 0 &&
+                        <FilePicker linkTo={this.UPLOAD_ID} />
+                    }
 
                     {this.state.images.length > 0 &&
                         <div className="button-group">
@@ -123,7 +127,6 @@ export default class UploadForm extends React.Component {
                     }
 
                     <ProgressBar progress={this.state.progress} />
-
                     <ImagePreview images={this.state.images} />
                 </form>
             </div>
