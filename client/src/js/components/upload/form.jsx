@@ -21,6 +21,7 @@ export default class UploadForm extends React.Component {
         this.handleUpload = this.handleUpload.bind(this);
         this.handleFilePick = this.handleFilePick.bind(this);
         this.handleClear = this.handleClear.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
     }
 
     handleClear() {
@@ -66,9 +67,28 @@ export default class UploadForm extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.dropzone = document.querySelector('.uploadform');
+        this.dropzone.ondragover = this.handleDragOver;
+        this.dropzone.ondragleave = () => this.dropzone.classList.remove('dropzone__hover');
+        this.dropzone.ondrop = (evt) => {
+            this.dropzone.classList.remove('dropzone__hover');
+            this.handleFilePick(evt);
+        };
+    }
+
+    handleDragOver(evt) {
+        this.dropzone.classList.add('dropzone__hover');
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+    }
+
     handleFilePick(evt) {
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            const files = evt.target.files;
+            evt.preventDefault();
+            // handle file upload && drop
+            const files = evt.target.files || evt.dataTransfer.files;
             let file, i;
 
             for (i = 0; i < files.length; i++) {
