@@ -19,5 +19,5 @@ export default class ImagePreview extends React.Component {
 }
 
 ImagePreview.propTypes = {
-    images: React.PropTypes.string,
+    images: React.PropTypes.array,
 };
