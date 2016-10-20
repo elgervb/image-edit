@@ -1,6 +1,7 @@
 import React from 'react';
 import Request from './PromiseRequest';
 import FilePicker from './filepicker.jsx';
+import ImagePreview from './imagepreview.jsx';
 
 export default class UploadForm extends React.Component {
 
@@ -127,13 +128,7 @@ export default class UploadForm extends React.Component {
                         /* eslint-enable prefer-template */
                     }
 
-                    {this.state.images.length > 0 && this.state.images.map(image =>
-                        <div key={image.name} className="preview">
-                            <p>{image.name}</p>
-
-                            <img className="preview__thumb" src={image.src} />
-                        </div>
-                    )}
+                    <ImagePreview images={this.state.images} />
                 </form>
             </div>
         );
