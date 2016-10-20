@@ -2,6 +2,7 @@ import React from 'react';
 import Request from './PromiseRequest';
 import FilePicker from './filepicker.jsx';
 import ImagePreview from './imagepreview.jsx';
+import ProgressBar from './progressbar.jsx';
 
 export default class UploadForm extends React.Component {
 
@@ -121,12 +122,7 @@ export default class UploadForm extends React.Component {
                         </div>
                     }
 
-                    {this.state.progress > 0 && /* eslint-disable prefer-template */
-                        <div className="progress">
-                            <div className="progress__fill" style={{ width: this.state.progress + '%' }} />
-                        </div>
-                        /* eslint-enable prefer-template */
-                    }
+                    <ProgressBar progress={this.state.progress} />
 
                     <ImagePreview images={this.state.images} />
                 </form>
