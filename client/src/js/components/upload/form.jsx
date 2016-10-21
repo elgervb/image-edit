@@ -22,6 +22,8 @@ export default class UploadForm extends React.Component {
         this.handleFilePick = this.handleFilePick.bind(this);
         this.handleClear = this.handleClear.bind(this);
         this.handleDragOver = this.handleDragOver.bind(this);
+        this.handleDragLeave = this.handleDragLeave.bind(this);
+        this.handleDrop = this.handleDrop.bind(this);
     }
 
     handleClear() {
@@ -80,12 +82,15 @@ export default class UploadForm extends React.Component {
 
     componentDidMount() {
         this.dropzone = document.querySelector('.uploadform');
-        this.dropzone.ondragover = this.handleDragOver;
-        this.dropzone.ondragleave = () => this.dropzone.classList.remove('dropzone__hover');
-        this.dropzone.ondrop = (evt) => {
-            this.dropzone.classList.remove('dropzone__hover');
-            this.handleFilePick(evt);
-        };
+        this.dropzone.addEventListener('dragover', this.handleDragOver);
+        this.dropzone.addEventListener('dragleave', this.handleDragLeave);
+        this.dropzone.addEventListener('drop', this.handleDrop);
+    }
+
+    componentWillUnmount() {
+        this.dropzone.removeEventListener('dragover', this.handleDragOver);
+        this.dropzone.removeEventListener('dragleave', this.handleDragLeave);
+        this.dropzone.removeEventListener('drop', this.handleDrop);
     }
 
     handleDragOver(evt) {
@@ -93,6 +98,15 @@ export default class UploadForm extends React.Component {
         evt.stopPropagation();
         evt.preventDefault();
         evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+    }
+
+    handleDrop(evt) {
+        this.dropzone.classList.remove('dropzone__hover');
+        this.handleFilePick(evt);
+    }
+
+    handleDragLeave() {
+        this.dropzone.classList.remove('dropzone__hover');
     }
 
     handleFilePick(evt) {
