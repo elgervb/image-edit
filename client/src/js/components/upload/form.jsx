@@ -34,7 +34,7 @@ export default class UploadForm extends React.Component {
 
     handleUpload(e) {
         e.preventDefault();
-        const formdata = new FormData(document.querySelector('.uploadform'));
+        const formdata = new FormData();
         const request = new Request();
         const success = (data) => {
             this.props.onUpload(data);
@@ -51,6 +51,11 @@ export default class UploadForm extends React.Component {
                     this.setState({ progress: percentLoaded });
                 }
             }
+        });
+
+        // add the files to the formdata for upload
+        this.state.images.forEach((image, i) => {
+            formdata.append(`upload-${i}`, image.ref, image.name);
         });
 
         request.post('http://localhost:4001/upload', formdata)
@@ -105,6 +110,7 @@ export default class UploadForm extends React.Component {
                                 name: f.name,
                                 size: f.size,
                                 type: f.type,
+                                ref: f,
                             };
                             this.validateFile(readFile);
                             this.setState({

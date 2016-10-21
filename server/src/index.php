@@ -33,7 +33,8 @@ $router->route('^/upload', function () {
 }, 'POST');
 
 $router->route('^/image/(.*)', function ($image) {
-    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . urldecode($image));
+    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . urldecode($image))
+        ->grayscale();
 }, 'GET');
 
 $router->route('^/test', function () {
