@@ -2,12 +2,9 @@
 
 @import 'abstracts/all';
 
-@import 'base/reset';
-@import 'base/base';
-@import 'base/fonts';
-@import 'base/typography';
+@import 'base/all';
 
+@import 'layout/all';
+
+$overlay-color: rgba(#f00, .1);
 @import 'components/all';
-
-
-$overlay-color: rgba(#f00, .7);

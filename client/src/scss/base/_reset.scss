@@ -7,7 +7,6 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
-    box-sizing: border-box;
 }
 html {
     /* stylelint-disable */
@@ -15,6 +14,17 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     /* stylelint-enable */
+    //Set up a decent box model on the root element
+    box-sizing: border-box;
+}
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*, *::before, *::after {
+    box-sizing: inherit;
 }
 body{
     font: 16px/16px 'open sans';

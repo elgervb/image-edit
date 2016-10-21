@@ -1,0 +1,17 @@
+
+.sidebar {
+    background-color: $grey-darker;
+    color: $white-regular;
+    height: 100%;
+    padding: 1rem 0;
+    width: 30%;
+
+    &__menu__item {
+        a {
+            color: $white-regular;
+            display: block;
+            padding: 0 .5rem .5rem 1rem;
+            width: 100%;
+        }
+    }
+}

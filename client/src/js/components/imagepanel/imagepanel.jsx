@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class ImagePanel extends React.Component {
-    
+
     constructor() {
         super();
 
@@ -12,7 +12,10 @@ export default class ImagePanel extends React.Component {
 
     get host() {
         if (this.state.image) {
-            return `http://localhost:4001/image${this.state.image}`;
+            if (this.state.filter) {
+                return `http://localhost:4001/image/${this.state.filter}/${this.state.image}`;
+            }
+            return `http://localhost:4001/image/${this.state.image}`;
         }
 
         return this.state.image;
@@ -26,3 +29,7 @@ export default class ImagePanel extends React.Component {
         );
     }
 }
+
+ImagePanel.propTypes = {
+    image: React.PropTypes.string,
+};

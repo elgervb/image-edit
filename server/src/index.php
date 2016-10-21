@@ -32,13 +32,20 @@ $router->route('^/upload', function () {
 	return $action->exec();
 }, 'POST');
 
-$router->route('^/image/(.*)', function ($image) {
-    return ImageBuilder::create(__DIR__ . DIRECTORY_SEPARATOR . urldecode($image))
-        ->grayscale();
+const IMAGE_BASE_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+
+$router->route('^/image/(.*)/(.*)', function ($filter, $image) {
+    $method = str_replace(['-','_'], [''], $filter);
+    $ib = ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
+    
+    if (method_exists($ib, $method)) {
+           $ib->$method();
+    }
+    return $ib;
 }, 'GET');
 
-$router->route('^/test', function () {
-    echo 'TEST';
+$router->route('^/image/(.*)', function ($image) {
+    return ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
 }, 'GET');
 
 $result = $router->match($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);
