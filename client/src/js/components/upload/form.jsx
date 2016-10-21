@@ -55,7 +55,13 @@ export default class UploadForm extends React.Component {
 
         // add the files to the formdata for upload
         this.state.images.forEach((image, i) => {
-            formdata.append(`upload-${i}`, image.ref, image.name);
+            if (image.isValid) {
+                formdata.append(`upload-${i}`, image.ref, image.name);
+            } else {
+                this.setState({
+                    error: image.errorMsg,
+                });
+            }
         });
 
         request.post('http://localhost:4001/upload', formdata)
@@ -138,10 +144,10 @@ export default class UploadForm extends React.Component {
     validateFile(file) {
         if (file.size >= 1024 * 1024) {
             file.isValid = false;
-            file.errorMsg = 'File is too large';
+            file.errorMsg = `File ${file.name} is too large`;
         } else if (!file.type.match(/image\/.*/i)) {
             file.isValid = false;
-            file.errorMsg = `Filetype is not allowed ${file.type}`;
+            file.errorMsg = `${file.name}: filetype is not allowed ${file.type}`;
         } else {
             file.isValid = true;
         }
