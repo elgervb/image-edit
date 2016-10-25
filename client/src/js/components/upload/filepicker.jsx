@@ -13,9 +13,6 @@ export default class FilePicker extends React.Component {
     render() {
         return (
             <div className="pick-a-file">
-                { this.state.error &&
-                    <div className="error">{this.state.error}</div>
-                }
                 <label htmlFor={this.props.linkTo} className="uploadform__button">Pick an image</label>
             </div>
         );

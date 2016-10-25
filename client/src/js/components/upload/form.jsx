@@ -176,6 +176,10 @@ export default class UploadForm extends React.Component {
 
                     <h1 className="uploadform__header">{this.state.images.length === 0 ? 'Pick a new image' : 'Upload your image'}</h1>
 
+                    { this.state.error &&
+                        <div className="error">{this.state.error}</div>
+                    }
+
                     {!this.state.images.length > 0 &&
                         <FilePicker linkTo={this.UPLOAD_ID} />
                     }
