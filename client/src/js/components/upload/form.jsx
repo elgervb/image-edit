@@ -74,7 +74,7 @@ export default class UploadForm extends React.Component {
             if (err.message) {
                 error = JSON.parse(err.message).error;
             } else {
-                error = 'Unable to upload at this time.';
+                error = '';
             }
 
             this.setState({ error });
