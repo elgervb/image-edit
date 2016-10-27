@@ -11,14 +11,15 @@ export default class ImagePanel extends React.Component {
     }
 
     get host() {
+        const cache = new Date().getTime();
         if (this.state.image) {
             if (this.state.filter) {
-                return `http://localhost:4001/image/${this.state.filter}/${this.state.image}`;
+                return `http://localhost:4001/image/${this.state.filter}/${this.state.image}?${cache}`;
             }
-            return `http://localhost:4001/image/${this.state.image}`;
+            return `http://localhost:4001/image/${this.state.image}?${cache}`;
         }
 
-        return this.state.image;
+        return `this.state.image?${cache}`;
     }
 
     render() {
