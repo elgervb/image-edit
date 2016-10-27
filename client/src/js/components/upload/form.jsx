@@ -3,6 +3,7 @@ import Request from './PromiseRequest';
 import FilePicker from './filepicker.jsx';
 import ImagePreview from './imagepreview.jsx';
 import ProgressBar from './progressbar.jsx';
+import MessageBox from '../messagebox.jsx';
 
 export default class UploadForm extends React.Component {
 
@@ -177,7 +178,7 @@ export default class UploadForm extends React.Component {
                     <h1 className="uploadform__header">{this.state.images.length === 0 ? 'Pick a new image' : 'Upload your image'}</h1>
 
                     { this.state.error &&
-                        <div className="error">{this.state.error}</div>
+                        <MessageBox type={'error'} title={'error'} message={this.state.error} />
                     }
 
                     {!this.state.images.length > 0 &&
