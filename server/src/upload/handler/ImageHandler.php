@@ -15,6 +15,6 @@ class ImageHandler implements IHander {
      * @see \handler\IHander::handle()
      */
     public function handle($object) {
-        $object->render();
+        $object->save(null, true)->render();
     }
 }
