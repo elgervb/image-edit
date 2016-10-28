@@ -9,6 +9,7 @@ use imagemanipulation\ImageBuilder;
 use upload\handler\ImageHandler;
 use http\HttpRequest;
 use http\HttpMethod;
+use handler\json\Json;
 
 include __DIR__ . '/../vendor/autoload.php';
 
@@ -46,6 +47,10 @@ $router->route('^/image/(.*)/(.*)', function ($filter, $image) {
 
 $router->route('^/image/(.*)', function ($image) {
     return ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
+}, 'GET');
+
+$router->route('^/filters$', function () {
+    return new Json(json_decode(file_get_contents(__DIR__ . '/filters/filters.json')));
 }, 'GET');
 
 $result = $router->match($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

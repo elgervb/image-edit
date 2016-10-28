@@ -1,5 +1,5 @@
 import React from 'react';
-import Request from './PromiseRequest';
+import Request from '../PromiseRequest';
 import FilePicker from './filepicker.jsx';
 import ImagePreview from './imagepreview.jsx';
 import ProgressBar from './progressbar.jsx';
