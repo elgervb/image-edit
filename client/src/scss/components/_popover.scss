@@ -1,0 +1,143 @@
+$popoverBorderColor: #666 !default;
+$popoverBackgroundColor: #fff !default;
+$popoverArrowSize: 14px !default;
+
+.popover {
+    display: inline-block;
+    position: relative;
+
+    &:hover .hover, &:hover ~ .hover{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .hover, & ~ .hover { // default top
+        background: $popoverBackgroundColor;
+        border: 1px solid;
+        border-color: $popoverBorderColor;
+        bottom: 100%;
+        box-shadow: inset 0 0 0 1px rgba($white-regular, .9), 0 1px 2px rgba($black-regular, .1);
+        left: 0;
+        list-style: none;
+        max-width: 250px;
+        opacity: 0;
+        padding: 1rem;
+        position: absolute;
+        right: 0;
+        transition: all .2s ease-out;
+        visibility: hidden;
+        z-index: 999;
+
+        & > p:last-child {
+            padding-bottom: 0;
+        }
+
+        &:before, &:after { // Arrow
+            border: ($popoverArrowSize / 2) outset transparent;
+            content: '';
+            display: block;
+            height: 0;
+            left: 15px;
+            position: absolute;
+            width: 0;
+        }
+
+        &:before { // Arrow border
+            bottom: -($popoverArrowSize);
+            border-top: ($popoverArrowSize / 2) solid $popoverBorderColor;
+        }
+
+        &:after { // Arrow background
+            bottom: -($popoverArrowSize) + 2px;
+            border-top: ($popoverArrowSize / 2) solid $popoverBackgroundColor;
+        }
+    }
+
+    &.bottom .hover, &.bottom ~ .hover{
+        bottom: auto;
+        left: 0;
+        right: 0;
+        top: 100%;
+
+        &:before, &:after { // Arrow
+            border-top: ($popoverArrowSize / 2) solid transparent;
+            bottom: 0;
+            left: 50%;
+            right: 0;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        &:before { // Arrow border
+            border-bottom: ($popoverArrowSize / 2) solid $popoverBorderColor;
+            bottom: 0;
+            top: -($popoverArrowSize);
+        }
+        &:after { // Arrow background
+            border-bottom: ($popoverArrowSize / 2) solid $popoverBackgroundColor;
+            bottom: 0;
+            top: -($popoverArrowSize) + 2px;
+        }
+    }
+
+    &.left .hover, &.left ~ .hover{
+        bottom: auto;
+        left: auto;
+        margin-right: $popoverArrowSize;
+        right: 100%;
+        top: -100%;
+
+        &:before, &:after { // Arrow
+            border-top: ($popoverArrowSize / 2) solid transparent;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &:before { // Arrow border
+            border-left: ($popoverArrowSize / 2) solid $popoverBorderColor;
+            bottom: 0;
+            left: auto;
+            right: -($popoverArrowSize);
+        }
+        &:after { // Arrow background
+            border-left: ($popoverArrowSize / 2) solid $popoverBackgroundColor;
+            bottom: 0;
+            left: auto;
+            right: -($popoverArrowSize) + 2px;
+        }
+    }
+
+    &.right .hover, &.right ~ .hover{
+        bottom: auto;
+        left: 100%;
+        margin-left: 10px;
+        right: auto;
+        top: 0;
+        transform: translateY(-50%);
+
+        &:before, &:after { // Arrow
+            border-top: ($popoverArrowSize / 2) solid transparent;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &:before { // Arrow border
+            border-right: ($popoverArrowSize / 2) solid $popoverBorderColor;
+            bottom: 0;
+            left: -($popoverArrowSize);
+        }
+        &:after { // Arrow background
+            border-right: ($popoverArrowSize / 2) solid $popoverBackgroundColor;
+            bottom: 0;
+            left: -($popoverArrowSize) + 2px;
+        }
+    }
+
+    li:first-child:after { // Arrow inner shadow
+        bottom: -13px;
+        border-top: ($popoverArrowSize / 2) solid $white-regular;
+    }
+}

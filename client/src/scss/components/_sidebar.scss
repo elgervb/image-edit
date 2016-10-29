@@ -8,6 +8,8 @@
     width: 30%;
 
     &__menu__item {
+        position: relative;
+
         a {
             color: $white-regular;
             display: block;

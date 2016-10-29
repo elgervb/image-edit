@@ -1,0 +1,18 @@
+
+.sidebar {
+    .item__info {
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        color: $grey-regular;
+        font-size: .5rem;
+        font-weight: bold;
+        height: 1rem;
+        position: absolute;
+        right: .3rem;
+        text-align: center;
+        width: 1rem;
+    }
+    &__menu__item .hover {
+        color: $black-regular;
+    }
+}

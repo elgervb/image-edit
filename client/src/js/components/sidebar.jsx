@@ -11,7 +11,10 @@ export default class SideBar extends React.Component {
                     </li>
                     {this.props.items && this.props.items.map((item, i) =>
                         <li key={i} className="sidebar__menu__item">
-                            <a onClick={() => this.props.handleFilter(item.name)}>{item.name}</a>
+                            <a onClick={() => this.props.handleFilter(item.name)}>
+                                {item.name}
+                                <i className="item__info" title={item.description}>i</i>
+                            </a>
                         </li>
                     )}
                 </ul>

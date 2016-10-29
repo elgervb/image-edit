@@ -1,36 +1,138 @@
 [
-    { "name": "brightness" },
-    { "name": "colorize" },
-    { "name": "comic" },
-    { "name": "contrast" },
-    { "name": "darken" },
-    { "name": "dodge" },
-    { "name": "duotone" },
-    { "name": "edgeDetect" },
-    { "name": "emboss" },
-    { "name": "findEdges" },
-    { "name": "flip" },
-    { "name": "gammaCorrection" },
-    { "name": "gaussianBlur" },
-    { "name": "greyscale" },
-    { "name": "hueRotate" },
-    { "name": "meanremove" },
-    { "name": "motionBlur" },
-    { "name": "negative" },
-    { "name": "noise" },
-    { "name": "oldCardboard" },
-    { "name": "pixelate" },
-    { "name": "rotate" },
-    { "name": "roundedCorners" },
-    { "name": "scatter" },
-    { "name": "selectiveBlur" },
-    { "name": "semiGrayscale" },
-    { "name": "sepia" },
-    { "name": "sepiaFast" },
-    { "name": "sharpen" },
-    { "name": "smooth" },
-    { "name": "sobelEdgeDetect" },
-    { "name": "sobelEdgeEnhance" },
-    { "name": "truecolor" },
-    { "name": "vignette" }
+    { 
+    	"name": "brightness",
+    	"description": "Adjust the brightness of the image"
+    },
+    { 
+    	"name": "colorize",
+    	"description": "Blends a fill color with the image"
+    },
+    { 
+    	"name": "comic",
+    	"description": "Apply a sketchy comic filter to an image"
+    },
+    { 	
+    	"name": "contrast",
+    	"description": "Changes the contrast of the image"
+    },
+    { 
+    	"name": "darken",
+    	"description": "Changes the brightness of the image"
+    },
+    { 	
+    	"name": "dodge",
+    	"description": "Dodge an image, making it darker"
+    },
+    { 
+    	"name": "duotone",
+    	"description": "Duotone filter. Enhances Red, Green or Blue or a combination"
+    },
+    { 
+    	"name": "edgeDetect",
+    	"description": "Uses edge detection to highlight the edges in the image"
+    },
+    { 
+    	"name": "emboss",
+    	"description": "Embosses the image"
+    },
+    { 
+    	"name": "findEdges",
+    	"description": "Find the edges in an image without color loss"
+    },
+    { 	
+    	"name": "flip",
+    	"description": "Flips an image over it's x- or y-axis"
+    },
+    { 
+    	"name": "gammaCorrection",
+    	"description": "Apply gamma correction"
+    },
+    { 
+    	"name": "gaussianBlur",
+    	"description": "Blurs the image using the Gaussian method"
+    },
+    { 
+    	"name": "greyscale",
+    	"description": "Converts the colors to grayscale"
+    },
+    { 
+    	"name": "hueRotate",
+    	"description": "Rotate the hue of the image"
+    },
+    { 	
+    	"name": "meanremove",
+    	"description": "Uses mean removal to achieve a 'sketchy' effect"
+    },
+    { 
+    	"name": "motionBlur",
+    	"description": "Motion blurs the image"
+    },
+    { 
+    	"name": "negative",
+    	"description": "Create a negative of an image"
+    },
+    { 
+    	"name": "noise",
+    	"description": "add distortion (noise) to the image"
+    },
+    { 
+    	"name": "oldCardboard",
+    	"description": "Image filter to give the image an old cardboard look"
+    },
+    { 
+    	"name": "pixelate",
+    	"description": "Pixelate an image"
+    },
+    { 
+    	"name": "rotate",
+    	"description": "Rotate an image over an angle"
+    },
+    { 
+    	"name": "roundedCorners",
+    	"description": "add rounded corners to the image"
+    },
+    { 
+    	"name": "scatter",
+    	"description": "Scatter pixels around in a random way"
+    },
+    { 
+    	"name": "selectiveBlur",
+    	"description": "Image filter Selective Blur"
+    },
+    { 
+    	"name": "semiGrayscale",
+    	"description": "Applies grayscale to an image, optionally add a grayscale percentage"
+    },
+    { 
+    	"name": "sepia",
+    	"description": "Apply sepia to the image"
+    },
+    { 
+    	"name": "sepiaFast",
+    	"description": "Apply a septia filter on the image"
+    },
+    { 
+    	"name": "sharpen",
+    	"description": "Sharpens the image"
+    },
+    { 
+    	"name": "smooth",
+    	"description": "Makes the image smoother"
+    },
+    {
+    	"name": "sobelEdgeDetect",
+    	"description": "Sobel edge detect (extremely slow...)"
+    },
+    { 
+    	"name": "sobelEdgeEnhance",
+    	"description": "Sobel edge detect"
+    },
+    { 
+    	"name": "truecolor",
+    	"description": "Bring the image back to 2 colors."
+    },
+    { 
+    	"name": "vignette",
+    	"description": "Applies a darker mask around the edges of the image"
+    }
 ]
