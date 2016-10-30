@@ -30,7 +30,7 @@ export default class SideBarContainer extends React.Component {
             );
         }
 
-        return '';
+        return null;
     }
 }
 

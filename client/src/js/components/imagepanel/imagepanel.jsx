@@ -23,11 +23,14 @@ export default class ImagePanel extends React.Component {
     }
 
     render() {
-        return (
-            <div className="image-panel">
-                <img src={this.host} />
-            </div>
-        );
+        if (this.state.image) {
+            return (
+                <div className="image-panel">
+                    <img src={this.host} />
+                </div>
+            );
+        }
+        return null;
     }
 }
 
