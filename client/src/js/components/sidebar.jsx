@@ -13,7 +13,11 @@ export default class SideBar extends React.Component {
                         <li key={i} className="sidebar__menu__item">
                             <a onClick={() => this.props.handleFilter(item.name)}>
                                 {item.name}
-                                <i className="item__info" title={item.description}>i</i>
+                                <i className="item__info popover bottom" title={item.description}>i</i>
+                                <div className="hover">
+                                    <h3>{item.name}</h3>
+                                    <p>{item.description}</p>
+                                </div>
                             </a>
                         </li>
                     )}
