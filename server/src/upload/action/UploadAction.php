@@ -22,6 +22,9 @@ class UploadAction {
 		$this->manager = new UploadManager($options);
 	}
 	
+	/**
+	 * @return \handler\http\HttpStatus
+	 */
 	public function exec() {
 		try {
 			$files = $this->manager->upload();

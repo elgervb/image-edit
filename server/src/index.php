@@ -19,6 +19,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 date_default_timezone_set('UTC');
 
+const IMAGE_BASE_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
+
 HttpContext::get()->getResponse()->setCORSHeaders();
 
 $router = new Router();
@@ -30,10 +32,16 @@ $handlers->add(new ImageHandler());
 $router->route('.*', function() {return [];}, HttpMethod::METHOD_OPTIONS);
 $router->route('^/upload', function () {
 	$action = new \upload\action\UploadAction();
-	return $action->exec();
+	$result = $action->exec();
+	if ($result && $result->getHttpCode() === handler\http\HttpStatus::STATUS_200_OK) {
+	    $content = $result->getContent();
+	    $file = new \SplFileInfo(IMAGE_BASE_PATH . $content['filename']);
+	    copy($file, $file->getPath() . DIRECTORY_SEPARATOR . $file->getBasename($file->getExtension()) . 'orig.' . $file->getExtension());
+	}
+	
+	return $result;
 }, 'POST');
 
-const IMAGE_BASE_PATH = __DIR__ . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
 
 $router->route('^/image/(.*)/(.*)', function ($filter, $image) {
     $method = str_replace(['-','_'], [''], $filter);
@@ -46,7 +54,12 @@ $router->route('^/image/(.*)/(.*)', function ($filter, $image) {
 }, 'GET');
 
 $router->route('^/image/(.*)', function ($image) {
-    return ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
+    $imagePath = new \SplFileInfo(IMAGE_BASE_PATH . urldecode($image));
+    $origImagePath = $imagePath->getPath() . DIRECTORY_SEPARATOR . $imagePath->getBasename($imagePath->getExtension()) . 'orig.' . $imagePath->getExtension();
+    
+    copy ($origImagePath, $imagePath);
+    
+    return ImageBuilder::create($imagePath);
 }, 'GET');
 
 $router->route('^/filters$', function () {
