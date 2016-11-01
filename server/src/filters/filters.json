@@ -1,138 +1,172 @@
 [
     { 
     	"name": "brightness",
+    	"method": "brightness",
     	"description": "Adjust the brightness of the image"
     },
     { 
     	"name": "colorize",
+    	"method": "colorize",
     	"description": "Blends a fill color with the image"
     },
     { 
     	"name": "comic",
+    	"method": "comic",
     	"description": "Apply a sketchy comic filter to an image"
     },
     { 	
     	"name": "contrast",
+    	"method": "contrast",
     	"description": "Changes the contrast of the image"
     },
     { 
     	"name": "darken",
+    	"method": "darken",
     	"description": "Changes the brightness of the image"
     },
     { 	
     	"name": "dodge",
+    	"method": "dodge",
     	"description": "Dodge an image, making it darker"
     },
     { 
     	"name": "duotone",
+    	"method": "duotone",
     	"description": "Duotone filter. Enhances Red, Green or Blue or a combination"
     },
     { 
-    	"name": "edgeDetect",
+    	"name": "edge detect",
+    	"method": "edgeDetect",
     	"description": "Uses edge detection to highlight the edges in the image"
     },
     { 
     	"name": "emboss",
+    	"method": "emboss",
     	"description": "Embosses the image"
     },
     { 
-    	"name": "findEdges",
+    	"name": "find edges",
+    	"method": "findEdges",
     	"description": "Find the edges in an image without color loss"
     },
     { 	
     	"name": "flip",
+    	"method": "flip",
     	"description": "Flips an image over it's x- or y-axis"
     },
     { 
-    	"name": "gammaCorrection",
+    	"name": "gamma correction",
+    	"method": "gammaCorrection",
     	"description": "Apply gamma correction"
     },
     { 
-    	"name": "gaussianBlur",
+    	"name": "gaussian blur",
+    	"method": "gaussianBlur",
     	"description": "Blurs the image using the Gaussian method"
     },
     { 
     	"name": "greyscale",
+    	"method": "greyscale",
     	"description": "Converts the colors to grayscale"
     },
     { 
-    	"name": "hueRotate",
+    	"name": "hue rotate",
+    	"method": "hueRotate",
     	"description": "Rotate the hue of the image"
     },
     { 	
-    	"name": "meanremove",
+    	"name": "mean remove",
+    	"method": "meanremove",
     	"description": "Uses mean removal to achieve a 'sketchy' effect"
     },
     { 
-    	"name": "motionBlur",
+    	"name": "motion blur",
+    	"method": "motionBlur",
     	"description": "Motion blurs the image"
     },
     { 
     	"name": "negative",
+    	"method": "negative",
     	"description": "Create a negative of an image"
     },
     { 
     	"name": "noise",
+    	"method": "noise",
     	"description": "add distortion (noise) to the image"
     },
     { 
-    	"name": "oldCardboard",
+    	"name": "old cardboard",
+    	"method": "oldCardboard",
     	"description": "Image filter to give the image an old cardboard look"
     },
     { 
     	"name": "pixelate",
+    	"method": "pixelate",
     	"description": "Pixelate an image"
     },
     { 
     	"name": "rotate",
+    	"method": "rotate",
     	"description": "Rotate an image over an angle"
     },
     { 
-    	"name": "roundedCorners",
+    	"name": "rounded corners",
+    	"method": "roundedCorners",
     	"description": "add rounded corners to the image"
     },
     { 
     	"name": "scatter",
+    	"method": "scatter",
     	"description": "Scatter pixels around in a random way"
     },
     { 
-    	"name": "selectiveBlur",
+    	"name": "selective blur",
+    	"method": "selectiveBlur",
     	"description": "Image filter Selective Blur"
     },
     { 
-    	"name": "semiGrayscale",
+    	"name": "semi grayscale",
+    	"method": "semiGrayscale",
     	"description": "Applies grayscale to an image, optionally add a grayscale percentage"
     },
     { 
     	"name": "sepia",
+    	"method": "sepia",
     	"description": "Apply sepia to the image"
     },
     { 
-    	"name": "sepiaFast",
+    	"name": "sepia fast",
+    	"method": "sepiaFast",
     	"description": "Apply a septia filter on the image"
     },
     { 
     	"name": "sharpen",
+    	"method": "sharpen",
     	"description": "Sharpens the image"
     },
     { 
     	"name": "smooth",
+    	"method": "smooth",
     	"description": "Makes the image smoother"
     },
     {
-    	"name": "sobelEdgeDetect",
+    	"name": "sobel edge detect",
+    	"method": "sobelEdgeDetect",
     	"description": "Sobel edge detect (extremely slow...)"
     },
     { 
-    	"name": "sobelEdgeEnhance",
+    	"name": "sobel edge enhance",
+    	"method": "sobelEdgeEnhance",
     	"description": "Sobel edge detect"
     },
     { 
-    	"name": "truecolor",
+    	"name": "true color",
+    	"method": "truecolor",
     	"description": "Bring the image back to 2 colors."
     },
     { 
     	"name": "vignette",
+    	"method": "vignette",
     	"description": "Applies a darker mask around the edges of the image"
     }
 ]
