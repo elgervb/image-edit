@@ -6,12 +6,12 @@ $popoverArrowSize: 14px !default;
     display: inline-block;
     position: relative;
 
-    &:hover .hover, &:hover ~ .hover{
+    &:hover &__hover, &:hover ~ &__hover{
         visibility: visible;
         opacity: 1;
     }
 
-    .hover, & ~ .hover { // default top
+    &__hover, & ~ &__hover { // default top
         background: $popoverBackgroundColor;
         border: 1px solid;
         border-color: $popoverBorderColor;
@@ -53,7 +53,7 @@ $popoverArrowSize: 14px !default;
         }
     }
 
-    &.bottom .hover, &.bottom ~ .hover{
+    &--bottom &__hover, &--bottom ~ &__hover{
         bottom: auto;
         left: 0;
         right: 0;
@@ -79,12 +79,13 @@ $popoverArrowSize: 14px !default;
         }
     }
 
-    &.left .hover, &.left ~ .hover{
+    &--left &__hover, &--left ~ &__hover{
         bottom: auto;
         left: auto;
         margin-right: $popoverArrowSize;
         right: 100%;
         top: -100%;
+        transform: translateY(-1.5em);
 
         &:before, &:after { // Arrow
             border-top: ($popoverArrowSize / 2) solid transparent;
@@ -108,13 +109,13 @@ $popoverArrowSize: 14px !default;
         }
     }
 
-    &.right .hover, &.right ~ .hover{
+    &--right &__hover, &--right ~ &__hover{
         bottom: auto;
         left: 100%;
         margin-left: 10px;
         right: auto;
-        top: 0;
-        transform: translateY(-50%);
+        top: -100%;
+        transform: translateY(-1.5em);
 
         &:before, &:after { // Arrow
             border-top: ($popoverArrowSize / 2) solid transparent;

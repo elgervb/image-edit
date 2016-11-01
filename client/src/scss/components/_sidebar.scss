@@ -23,7 +23,8 @@
         }
     }
 
-    .hover {
+    .popover__hover {
+        color: $black-regular;
         max-width: none;
     }
 }
