@@ -15,6 +15,7 @@ class ImageHandler implements IHander {
      * @see \handler\IHander::handle()
      */
     public function handle($object) {
+        \http\HttpContext::get()->getResponse()->flush();
         $object->save(null, true)->render();
     }
 }
