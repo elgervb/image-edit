@@ -48,7 +48,8 @@ $router->route('^/image/(.*)/(.*)', function ($filter, $image) {
     $ib = ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
     
     if (method_exists($ib, $method)) {
-           $ib->$method();
+        \http\HttpContext::get()->getResponse()->disableCache();
+        $ib->$method();
     }
     return $ib;
 }, 'GET');
