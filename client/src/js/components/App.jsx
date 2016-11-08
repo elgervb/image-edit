@@ -9,17 +9,22 @@ export default class App extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            image: null,
+            filter: null,
+        };
+
         this.onUpload = this.onUpload.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
     }
 
     onUpload(data) {
         // do something with the upload
-        this.imagepanel.setState({ image: data.filename });
+        this.setState({ image: data.filename });
     }
 
     handleFilterChange(filtername) {
-        this.imagepanel.setState({ filter: filtername });
+        this.setState({ filter: filtername });
     }
 
     render() {
@@ -27,7 +32,7 @@ export default class App extends React.Component {
             <div className="layout full-height">
                 <UploadForm onUpload={this.onUpload} />
                 <SideBarContainer handleFilter={this.handleFilterChange} />
-                <ImagePanel ref={(c) => { this.imagepanel = c; }} />
+                <ImagePanel image={this.state.image} filter={this.state.filter} />
             </div>
         );
     }
