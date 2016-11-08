@@ -1,24 +1,19 @@
 import React from 'react';
 
 export default class ImagePanel extends React.Component {
-
-    get host() {
-        const cache = new Date().getTime();
-        if (this.props.image) {
-            if (this.props.filter) {
-                return `http://localhost:4001/image/${this.props.filter}/${this.props.image}?${cache}`;
-            }
-            return `http://localhost:4001/image/${this.props.image}?${cache}`;
+    blobUrl() {
+        if (this.props.blob) {
+            return `${window.URL.createObjectURL(this.props.blob)}`;
         }
-
-        return `this.props.image?${cache}`;
+        return null;
     }
 
     render() {
-        if (this.props.image) {
+        const url = this.blobUrl() || this.props.image;
+        if (url) {
             return (
                 <div className="image-panel">
-                    <img src={this.host} />
+                    <img src={url} />
                 </div>
             );
         }
@@ -28,5 +23,5 @@ export default class ImagePanel extends React.Component {
 
 ImagePanel.propTypes = {
     image: React.PropTypes.string,
-    filter: React.PropTypes.string,
+    blob: React.PropTypes.instanceOf(Blob),
 };
