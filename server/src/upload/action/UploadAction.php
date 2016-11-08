@@ -4,7 +4,7 @@ namespace upload\action;
 use upload\UploadManager;
 use upload\UploadOptions;
 use handler\http\HttpStatus;
-use utils\Random;
+use upload\FileModel;
 
 class UploadAction {
 	
@@ -36,15 +36,7 @@ class UploadAction {
 			/* @var $file \upload\UploadedFile */
 			$file = $files->offsetGet(0);
 			
-			return new HttpStatus(HttpStatus::STATUS_200_OK, 
-				[	
-				    'guid' => Random::guid(),
-					'filename' => $file->getFilename(),
-					'mime' => $file->getMimeType(),
-					'mtime' => $file->getMTime(),
-				    'url' => '/uploads/' . $file->getFilename(),
-					'size' => $file->getSize(),
-				]);
+			return new HttpStatus(HttpStatus::STATUS_200_OK, new FileModel($file));
 			
 		} catch (\upload\UploadException $ex) {
 			return new HttpStatus(HttpStatus::STATUS_422_UNPROCESSABLE_ENTITY, 

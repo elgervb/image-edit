@@ -35,7 +35,7 @@ $router->route('^/upload', function () {
 	$result = $action->exec();
 	if ($result && $result->getHttpCode() === handler\http\HttpStatus::STATUS_200_OK) {
 	    $content = $result->getContent();
-	    $file = new \SplFileInfo(IMAGE_BASE_PATH . $content['filename']);
+	    $file = new \SplFileInfo(IMAGE_BASE_PATH . $content->filename);
 	    copy($file, $file->getPath() . DIRECTORY_SEPARATOR . $file->getBasename($file->getExtension()) . 'orig.' . $file->getExtension());
 	}
 	
