@@ -2,6 +2,10 @@
 
 export default class PromiseRequest {
 
+    constructor(type = 'json') {
+        this.type = type;
+    }
+
     get(url, data) {
         return this.request('GET', url, data);
     }
@@ -13,16 +17,13 @@ export default class PromiseRequest {
     request(method, url, data) {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
+            xhr.responseType = this.type;
 
             xhr.open(method, url);
 
             xhr.onload = () => {
-                let json;
-                if (xhr.response) {
-                    json = JSON.parse(xhr.response);
-                }
                 if (xhr.status === 200) {
-                    resolve(json, xhr);
+                    resolve(xhr.response, xhr);
                 } else {
                     reject(new Error(xhr.response));
                 }

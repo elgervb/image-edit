@@ -39,8 +39,8 @@ export default class UploadForm extends React.Component {
         e.preventDefault();
         const formdata = new FormData();
         const request = new Request();
-        const success = (data) => {
-            this.props.onUpload(data);
+        const success = (blob) => {
+            this.props.onUpload(blob);
             this.setState({
                 error: '',
                 uploaded: true,

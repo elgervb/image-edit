@@ -2,6 +2,8 @@ import React from 'react';
 import UploadForm from './upload/form.jsx';
 import ImagePanel from './imagepanel/imagepanel.jsx';
 import SideBarContainer from './sidebarcontainer.jsx';
+import Overlay from './overlay.jsx';
+import Request from './PromiseRequest';
 import {} from '../../scss/main.scss';
 
 export default class App extends React.Component {
@@ -9,17 +11,48 @@ export default class App extends React.Component {
     constructor() {
         super();
 
+        this.state = {
+            image: null, // the uploaded image
+            filter: null, // the filter applied
+            working: false,
+            url: null,
+            blob: null,
+        };
+
         this.onUpload = this.onUpload.bind(this);
         this.handleFilterChange = this.handleFilterChange.bind(this);
     }
 
-    onUpload(data) {
+    get imageUrl() {
+        const cache = new Date().getTime();
+        if (this.state.image) {
+            if (this.state.filter) {
+                return `http://localhost:4001/image/${this.state.filter}/${this.state.image}?${cache}`;
+            }
+            return `http://localhost:4001/image/${this.state.image}?${cache}`;
+        }
+        return null;
+    }
+
+    onUpload(blob) {
         // do something with the upload
-        this.imagepanel.setState({ image: data.filename });
+        this.state.image = blob.filename;
+
+        this.setState({
+            url: this.imageUrl,
+        });
     }
 
     handleFilterChange(filtername) {
-        this.imagepanel.setState({ filter: filtername });
+        this.state.filter = filtername; // needed by this.imageUrl()
+        this.setState({ working: true });
+        const request = new Request('blob');
+        request.get(this.imageUrl)
+        .then((blob) => {
+            this.setState({ working: false, blob });
+        }, () => {
+            this.setState({ working: false });
+        });
     }
 
     render() {
@@ -27,7 +60,8 @@ export default class App extends React.Component {
             <div className="layout full-height">
                 <UploadForm onUpload={this.onUpload} />
                 <SideBarContainer handleFilter={this.handleFilterChange} />
-                <ImagePanel ref={(c) => { this.imagepanel = c; }} />
+                <ImagePanel image={this.state.url} blob={this.state.blob} />
+                <Overlay show={this.state.working} />
             </div>
         );
     }
