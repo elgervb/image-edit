@@ -1,7 +1,7 @@
 /* http://andrewhfarmer.com/react-ajax-best-practices/#2-container-components */
 import React from 'react';
 import SideBar from './sidebar.jsx';
-import Request from './PromiseRequest';
+import Request from '../generic/PromiseRequest';
 
 export default class SideBarContainer extends React.Component {
     constructor() {

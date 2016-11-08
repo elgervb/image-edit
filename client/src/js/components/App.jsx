@@ -1,9 +1,9 @@
 import React from 'react';
 import UploadForm from './upload/form.jsx';
 import ImagePanel from './imagepanel/imagepanel.jsx';
-import SideBarContainer from './sidebarcontainer.jsx';
-import Overlay from './overlay.jsx';
-import Request from './PromiseRequest';
+import SideBarContainer from './sidebar/sidebarcontainer.jsx';
+import Overlay from './generic/overlay.jsx';
+import Request from './generic/PromiseRequest';
 import {} from '../../scss/main.scss';
 
 export default class App extends React.Component {

@@ -1,9 +1,9 @@
 import React from 'react';
-import Request from '../PromiseRequest';
+import Request from '../generic/PromiseRequest';
 import FilePicker from './filepicker.jsx';
 import ImagePreview from './imagepreview.jsx';
 import ProgressBar from './progressbar.jsx';
-import MessageBox from '../messagebox.jsx';
+import MessageBox from '../generic/messagebox.jsx';
 
 export default class UploadForm extends React.Component {
 
