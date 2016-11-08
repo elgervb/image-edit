@@ -44,6 +44,7 @@ export default class UploadForm extends React.Component {
             this.setState({
                 error: '',
                 uploaded: true,
+                // progress: 100,
             });
         };
 
@@ -136,6 +137,7 @@ export default class UploadForm extends React.Component {
                             this.validateFile(readFile);
                             this.setState({
                                 images: this.state.images.concat(readFile),
+                                progress: 100,
                             });
                         };
                     })(file);
