@@ -48,7 +48,7 @@ export default class SideBarItem extends React.Component {
                 type={type}
                 data-arg={args.name}
                 data-filter={filter}
-                defaultValue={args.value}
+                defaultValue={`#${args.value}`}
                 onChange={this.handleChange} />;
         } else if (type === 'range') {
             return <div>

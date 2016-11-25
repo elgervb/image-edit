@@ -23,7 +23,9 @@ export default class UrlBuilder {
         let result = '';
 
         Object.entries(args).forEach((entry) => {
-            result += `${entry[0]}=${entry[1]}`;
+            // color fields have #, which is not allowed in url
+            const value = entry[1].replace('#', '');
+            result += `${entry[0]}=${value};`;
         });
 
         return result;

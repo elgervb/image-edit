@@ -17,7 +17,7 @@
     	"args": [{
     		"name": "color",
     		"type": "color",
-    		"value" : "#ffffff"
+    		"value" : "ffffff"
     	}],
     	"description": "Blends a fill color with the image"
     },
@@ -216,7 +216,7 @@
     	}, {
     		"name": "backgroundcolor",
     		"type": "color",
-    		"value" : "#ffffff"
+    		"value" : "ffffff"
     	}],
     	"description": "Rotate an image over an angle"
     },
@@ -232,7 +232,7 @@
     	}, {
     		"name": "color",
     		"type": "color",
-    		"value" : "#444444"
+    		"value" : "444444"
     	}],
     	"description": "add rounded corners to the image"
     },
@@ -312,11 +312,11 @@
     	"args": [{
     		"name": "primary",
     		"type": "color",
-    		"value" : "#ffffff"
+    		"value" : "ffffff"
     	}, {
     		"name": "secundary",
     		"type": "color",
-    		"value" : "#000000"
+    		"value" : "000000"
     	}],
     	"description": "Bring the image back to 2 colors."
     },
