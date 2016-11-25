@@ -5,11 +5,10 @@ export default class ProgressBar extends React.Component {
     render() {
         return (
             <div>
-                {this.props.progress > 0 && /* eslint-disable prefer-template */
+                {this.props.progress > 0 &&
                     <div className="progress">
-                        <div className="progress__fill" style={{ width: this.props.progress + '%' }} />
+                        <div className="progress__fill" style={{ width: `${this.props.progress}%` }} />
                     </div>
-                    /* eslint-enable prefer-template */
                 }
             </div>
         );

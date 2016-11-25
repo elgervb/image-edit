@@ -64,7 +64,7 @@ $router->route('^/image/(.*)', function ($image) {
 }, 'GET');
 
 $router->route('^/filters$', function () {
-    return new Json(json_decode(file_get_contents(__DIR__ . '/filters/filters.json')));
+    return new Json(json_decode(file_get_contents(__DIR__ . '/data/filters.json')));
 }, 'GET');
 
 $result = $router->match($_SERVER['REQUEST_URI'], $_SERVER['REQUEST_METHOD']);

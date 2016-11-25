@@ -1,0 +1,118 @@
+.field {
+    display: flex;
+    padding: .25rem 0;
+    position: relative;
+
+    &__inner {
+        align-items: center;
+        padding: .25rem 0;
+    }
+
+    &__error{
+        margin-left: 14em;
+    }
+}
+
+.label {
+    cursor: pointer;
+    display: block;
+    padding: .25rem 0;
+    width: 14rem;
+}
+
+.input {
+    border: 1px solid $grey-dark-light;
+    border-radius: 0;
+    flex-grow: 2; // take up the rest of the width
+    margin: 0;
+    padding: .25rem;
+
+    &[type=radio], &[type=checkbox]{
+        width: auto;
+    }
+
+    &[type=radio], &[type=checkbox], &[type=range]{
+        border: none;
+    }
+    &[type=color] {
+        appearance: none;
+        box-sizing: border-box;
+        padding: .25rem;
+
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        &::-webkit-color-swatch {
+            border: none;
+            display: block;
+        }
+    }
+}
+
+
+.button, .input[type=button], .input[type=reset], .input[type=submit] {
+    min-width: 0;
+    width: 24em;
+}
+.input, .textarea {
+
+    &:empty{
+        border: 1px solid #cecece;
+        box-shadow: none;
+    }
+    &.full-width{
+        width: 100%;
+    }
+}
+.radio-group{
+    width: 14em;
+
+    .label {
+        display: inline;
+    }
+}
+.textarea{
+    line-height: 1.6;
+    height: 9em;
+}
+
+
+.divider {
+    display: block;
+    margin: 1em 0;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+
+    & > span {
+        position: relative;
+        display: inline-block;
+    }
+
+    & > span:before,
+    & > span:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        height: 1px;
+        background: #999;
+    }
+
+    & > span:before {
+        right: 100%;
+        margin-right: 1rem;
+    }
+
+    & > span:after {
+        left: 100%;
+        margin-left: 1rem;
+    }
+}
+
+[contenteditable]{
+    border-bottom: 1px solid #cecece;
+    display: inline-block;
+    min-height: 1em;
+    min-width: 14rem;
+}
