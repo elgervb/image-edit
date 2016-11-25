@@ -25,7 +25,9 @@ class OptionsParser {
         $result = array();
         foreach ($options as $value){
             $o = explode('=', $value);
-            $result[$o[0] ] = $o[1];
+            if ($o[0]) {
+                $result[$o[0] ] = $o[1];
+            }
         }
         
         return $result;
