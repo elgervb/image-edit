@@ -16,7 +16,7 @@ export default class SideBarItem extends React.Component {
 
     handleChange(event) {
         const valueState = this.state.values;
-        valueState[event.target.id] = event.target.value;
+        valueState[event.target.dataset.filter][event.target.dataset.arg] = event.target.value;
         this.setState({ values: valueState });
     }
 
@@ -28,41 +28,51 @@ export default class SideBarItem extends React.Component {
 
     inputFactory(type, args, filter) {
         const cssClass = `input input--${type}`;
-        const id = `${filter}-${args.name}`;
+        if (!this.state.values[filter]) {
+            this.state.values[filter] = [];
+        }
+        // this.state.values[filter][args.name] = 10;
 
         if (type === 'number') {
             return <input
-              className={cssClass}
-              type={type}
-              min={args.min}
-              max={args.max}
-              id={filter + args.name}
-              defaultValue={args.value}
-              onChange={this.handleChange} />;
+                className={cssClass}
+                type={type}
+                min={args.min}
+                max={args.max}
+                data-arg={args.name}
+                data-filter={filter}
+                defaultValue={args.value}
+                onChange={this.handleChange} />;
         } else if (type === 'color') {
             return <input
-              className={cssClass}
-              type={type}
-              id={filter + args.name}
-              defaultValue={args.value}
-              onChange={this.handleChange} />;
+                className={cssClass}
+                type={type}
+                data-arg={args.name}
+                data-filter={filter}
+                defaultValue={args.value}
+                onChange={this.handleChange} />;
         } else if (type === 'range') {
-            return <div><input
-              className={cssClass}
-              type={type}
-              min={args.min}
-              max={args.max}
-              step={args.step || 1}
-              id={id}
-              defaultValue={args.value}
-              onChange={this.handleChange} /><span className="value">{this.state.values[id]}</span></div>;
+            return <div>
+                <input
+                    className={cssClass}
+                    type={type}
+                    min={args.min}
+                    max={args.max}
+                    step={args.step || 1}
+                    data-arg={args.name}
+                    data-filter={filter}
+                    defaultValue={args.value}
+                    onChange={this.handleChange} />
+                <span className="value">{this.state.values[filter][args.name]}</span>
+            </div>;
         } else if (type === 'select') {
             return <select
-              className={cssClass}
-              type={type}
-              id={filter + args.name}
-              defaultValue={args.value}
-              onChange={this.handleChange}>
+                className={cssClass}
+                type={type}
+                data-arg={args.name}
+                data-filter={filter}
+                defaultValue={args.value}
+                onChange={this.handleChange}>
                 {args.values.map(v =>
                     <option key={v} value={v} >{v}</option>
                 )}
@@ -74,7 +84,7 @@ export default class SideBarItem extends React.Component {
     render() {
         return (
             <div>
-                <a className="link" onClick={() => this.props.onclick(this.props.item.method)}>
+                <a className="link" onClick={() => this.props.onclick(this.props.item.method, this.state.values[this.props.item.name])}>
                     {this.props.item.name}
                     {this.props.item.args &&
                         <a className="show-args" onClick={this.handleShowArgs} title="show arguments">&hellip;</a>

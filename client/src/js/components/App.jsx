@@ -4,6 +4,7 @@ import ImagePanel from './imagepanel/imagepanel.jsx';
 import SideBarContainer from './sidebar/sidebarcontainer.jsx';
 import Overlay from './generic/overlay.jsx';
 import Request from './generic/PromiseRequest';
+import UrlBuilder from '../utils/urlbuilder';
 import {} from '../../scss/main.scss';
 
 export default class App extends React.Component {
@@ -24,14 +25,15 @@ export default class App extends React.Component {
     }
 
     get imageUrl() {
-        const cache = new Date().getTime();
-        if (this.state.image) {
-            if (this.state.filter) {
-                return `http://localhost:4001/image/${this.state.filter}/${this.state.image}?${cache}`;
-            }
-            return `http://localhost:4001/image/${this.state.image}?${cache}`;
-        }
-        return null;
+        return UrlBuilder.generateUrl(this.state.image, this.state.filter, this.state.args);
+        // const cache = new Date().getTime();
+        // if (this.state.image) {
+        //     if (this.state.filter) {
+        //         return `http://localhost:4001/image/${this.state.filter}/${this.state.image}?${cache}`;
+        //     }
+        //     return `http://localhost:4001/image/${this.state.image}?${cache}`;
+        // }
+        // return null;
     }
 
     onUpload(blob) {
@@ -43,8 +45,9 @@ export default class App extends React.Component {
         });
     }
 
-    handleFilterChange(filtername) {
+    handleFilterChange(filtername, args) {
         this.state.filter = filtername; // needed by this.imageUrl()
+        this.state.args = args;
         this.setState({ working: true });
         const request = new Request('blob');
         request.get(this.imageUrl)
