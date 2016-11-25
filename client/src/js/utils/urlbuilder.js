@@ -5,11 +5,11 @@ export default class UrlBuilder {
     static generateUrl(image, filter, args) {
         const cache = new Date().getTime();
         let url = BASE_URL;
-        if (args) {
-            //
-        }
         if (filter) {
             url += `/${filter}`;
+        }
+        if (args) {
+            url += `/${UrlBuilder.stringify(args)}`;
         }
         if (!image) {
             throw Error('UrlBuilder.generateUrl must have an image');
@@ -17,5 +17,15 @@ export default class UrlBuilder {
         url += `/${image}`;
 
         return `${url}?${cache}`;
+    }
+
+    static stringify(args) {
+        let result = '';
+
+        Object.entries(args).forEach((entry) => {
+            result += `${entry[0]}=${entry[1]}`;
+        });
+
+        return result;
     }
 }

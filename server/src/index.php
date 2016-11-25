@@ -10,6 +10,7 @@ use upload\handler\ImageHandler;
 use http\HttpRequest;
 use http\HttpMethod;
 use handler\json\Json;
+use utils\OptionsParser;
 
 include __DIR__ . '/../vendor/autoload.php';
 
@@ -42,6 +43,25 @@ $router->route('^/upload', function () {
 	return $result;
 }, 'POST');
 
+/**
+ * Returns the requested image with filter applied
+ *
+ * Url: /image/[filter]/[option=value;option=value]/img.png
+ * Options: rate=5;opacity=10
+ */
+$router->route('^/image/([a-z]+)/(.*)/(.*\.[a-z]+)$', function($filter, $optionsString, $image) {
+    $parser = new OptionsParser();
+    $options = $parser->parse($optionsString);
+    $method = str_replace(['-','_'], [''], $filter);
+    
+    $ib = ImageBuilder::create(IMAGE_BASE_PATH . urldecode($image));
+    if (method_exists($ib, $method)) {
+        \http\HttpContext::get()->getResponse()->disableCache();
+        call_user_func_array(array($ib, $method), $options);
+    }
+    return $ib;
+    
+}, 'GET');
 
 $router->route('^/image/(.*)/(.*)', function ($filter, $image) {
     $method = str_replace(['-','_'], [''], $filter);

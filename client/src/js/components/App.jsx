@@ -26,14 +26,6 @@ export default class App extends React.Component {
 
     get imageUrl() {
         return UrlBuilder.generateUrl(this.state.image, this.state.filter, this.state.args);
-        // const cache = new Date().getTime();
-        // if (this.state.image) {
-        //     if (this.state.filter) {
-        //         return `http://localhost:4001/image/${this.state.filter}/${this.state.image}?${cache}`;
-        //     }
-        //     return `http://localhost:4001/image/${this.state.image}?${cache}`;
-        // }
-        // return null;
     }
 
     onUpload(blob) {

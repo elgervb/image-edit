@@ -31,7 +31,6 @@ export default class SideBarItem extends React.Component {
         if (!this.state.values[filter]) {
             this.state.values[filter] = [];
         }
-        // this.state.values[filter][args.name] = 10;
 
         if (type === 'number') {
             return <input
